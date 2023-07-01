@@ -7,11 +7,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class WebDriverManage {
-	
+public class WebDriverManager {
+
 	WebDriver driver;
 
-	
 	public WebDriver launchBrowser(String browser, String url) {
 
 		if (browser.equalsIgnoreCase("chrome")) {
@@ -21,7 +20,6 @@ public class WebDriverManage {
 			driver.get(url);
 			driver.manage().window().maximize();
 			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-
 		}
 		if (browser.equalsIgnoreCase("edge")) {
 

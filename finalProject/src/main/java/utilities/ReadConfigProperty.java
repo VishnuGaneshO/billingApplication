@@ -5,12 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
 public class ReadConfigProperty {
 	String path = System.getProperty("user.dir");
 	public String url;
 	public String browser;
-	
+
 	public ReadConfigProperty() {
 		Properties objProperties = new Properties();
 		InputStream objInput = null;
@@ -38,6 +37,5 @@ public class ReadConfigProperty {
 			}
 		}
 	}
-	
 
 }

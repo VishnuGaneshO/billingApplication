@@ -21,4 +21,9 @@ public class CommonActions {
 		return msg;
 	}
 
+	public void clear(WebElement element) {
+		element.clear();
+
+	}
+
 }
