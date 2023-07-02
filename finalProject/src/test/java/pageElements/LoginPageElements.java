@@ -36,7 +36,7 @@ public class LoginPageElements extends CommonActions {
 	@FindBy(xpath = "//span[@class='help-block']/strong")
 	public WebElement invalidCredentials;
 	
-	public void loginWithValidCredentials(String id,String key) {
+	public void login_With_Valid_Credentials(String id,String key) {
 		sendKeys(username, id);
 		sendKeys(password, key);
 		click(login);
@@ -44,7 +44,7 @@ public class LoginPageElements extends CommonActions {
 		click(endTour);
 	}
 	
-	public void loginWithInvalidCredentials(String id,String key) {
+	public void login_With_Invalid_Credentials(String id,String key) {
 		
 		sendKeys(username, id);
 		sendKeys(password, key);
@@ -52,12 +52,12 @@ public class LoginPageElements extends CommonActions {
 		clear(username);
 	}
 	
-	public String getWelcomeText() {
+	public String get_Welcome_Text() {
 		String text = welcome.getText();
 		return text;
 	}
 	
-	public String getInvalidCredentialsText() {
+	public String get_Invalid_Credentials_Text() {
 		String text = invalidCredentials.getText();
 		return text;
 		

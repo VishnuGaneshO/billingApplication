@@ -2,8 +2,8 @@ package testCases;
 
 import org.testng.annotations.Test;
 
+import pageElements.ExpensesPageElements;
 import pageElements.LoginPageElements;
-import pageElements.UserPageElements;
 import utilities.ExcelReader;
 import utilities.ReadConfigProperty;
 import utilities.WebDriverManager;
@@ -14,10 +14,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class UserManagement extends WebDriverManager {
+public class Expenses extends WebDriverManager {
 	public static WebDriver driver;
 	LoginPageElements loginPageElements;
-	UserPageElements userPageElements;
+	ExpensesPageElements expensesPageElements;
 	ReadConfigProperty readConfigProperty = new ReadConfigProperty();
 	ExcelReader excelReader = new ExcelReader();
 
@@ -28,33 +28,36 @@ public class UserManagement extends WebDriverManager {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void user()  {
-		userPageElements.add_User();
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
-		Assert.assertEquals(userPageElements.get_Search_Result(), excelReader.getUserDetails(1, 10));
-	}
-	
-	@Test(priority = 2, enabled = true)
-	public void edit() {
-		userPageElements.edit_User(excelReader.getUserDetails(1, 9));
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
-		Assert.assertEquals(userPageElements.get_Search_Result(), excelReader.getUserDetails(1, 8));
-	}
-	
-	@Test(priority = 3, enabled = true)
-	public void delete() {
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
-		userPageElements.delete_User();
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
-		Assert.assertEquals(userPageElements.get_No_Records_Found(), "No matching records found");
+	public void addExpense()  {
+		expensesPageElements.add_Expenses();
+		Assert.assertEquals(expensesPageElements.get_firstRowReferenceNo(), excelReader.getExpenseDetails(1, 2));
 	}
 	
 
+	@Test(priority = 2, enabled = true)
+	public void doPayment() throws InterruptedException  {
+		expensesPageElements.add_Payment();
+		Assert.assertEquals(expensesPageElements.get_Payment_Status(), excelReader.getExpenseDetails(1, 9));
+	}
+	
+	@Test(priority = 3, enabled = true)
+	public void downloadExpenses() throws InterruptedException {
+		expensesPageElements.download();
+	}
+	
+	
+	@Test(priority = 4, enabled = true)
+	public void deleteExpenses() {
+		expensesPageElements.expense_Delete();
+		Assert.assertEquals(expensesPageElements.get_noData_Found(), excelReader.getExpenseDetails(1, 10));
+	}
+	
+	
 	@BeforeTest(alwaysRun = true)
 	public void beforeTest() {
 		driver = launchBrowser(readConfigProperty.browser, readConfigProperty.url);
 		loginPageElements = new LoginPageElements(driver);
-		userPageElements = new UserPageElements(driver);
+		expensesPageElements = new ExpensesPageElements(driver);
 	}
 
 	@AfterTest(alwaysRun = true)

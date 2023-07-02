@@ -18,14 +18,14 @@ public class LoginPage extends WebDriverManager {
 
 	@Test(priority = 0, enabled = true)
 	public void invalidLogin() {
-		loginPageElements.loginWithInvalidCredentials("admin", "12345");
-		Assert.assertEquals(loginPageElements.getInvalidCredentialsText(), "These credentials do not match our records.");
+		loginPageElements.login_With_Invalid_Credentials("admin", "12345");
+		Assert.assertEquals(loginPageElements.get_Invalid_Credentials_Text(), "These credentials do not match our records.");
 	}
 
 	@Test(priority = 1, enabled = true, dataProvider = "logins")
 	public void login(String id, String password) {
-		loginPageElements.loginWithValidCredentials(id, password);
-		Assert.assertEquals(loginPageElements.getWelcomeText(), "Welcome admin,");
+		loginPageElements.login_With_Valid_Credentials(id, password);
+		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
 	}
 
 	@BeforeTest(alwaysRun = true)

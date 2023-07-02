@@ -95,7 +95,7 @@ public class UserPageElements extends CommonActions {
 	@FindBy(xpath="//table[@id='users_table']/tbody[1]/tr[1]/td[1]")
 	public WebElement noRecordsFound;
 	
-	public void addUser() {
+	public void add_User() {
 		
 		click(userManagement);
 		waitConditions.explicitWait_elementvisibility(driver, user, 5);
@@ -118,7 +118,7 @@ public class UserPageElements extends CommonActions {
 		
 	}
 	
-	public void userSearch(String key) {
+	public void user_Search(String key) {
 		waitConditions.explicitWait_elementvisibility(driver, search, 5);
 		clear(search);
 		click(search);
@@ -126,13 +126,13 @@ public class UserPageElements extends CommonActions {
 		
 	}
 	
-	public String getSearchResult() {
+	public String get_Search_Result() {
 		waitConditions.explicitWait_elementvisibility(driver, firstRow, 5);
 		String text = firstRow.getText();
 		return text;
 	}
 	
-	public void editUser(String key) {
+	public void edit_User(String key) {
 		click(edit);
 		waitConditions.explicitWait_elementvisibility(driver, lastName, 5);
 		clear(lastName);
@@ -140,14 +140,14 @@ public class UserPageElements extends CommonActions {
 		click(update);
 	}
 	
-	public void deleteUser() {
+	public void delete_User() {
 		waitConditions.explicitWait_elementvisibility(driver, delete, 5);
 		click(delete);
 		waitConditions.explicitWait_elementclickable(driver, ok, 5);
 		click(ok);
 	}
 	
-	public String getNoRecordsFound() {
+	public String get_No_Records_Found() {
 		waitConditions.explicitWait_elementvisibility(driver, noRecordsFound, 5);
 		String text = noRecordsFound.getText();
 		return text;
