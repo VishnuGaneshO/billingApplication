@@ -176,7 +176,6 @@ public class ExpensesPageElements extends CommonActions {
 		waitConditions.explicitWait_elementvisibility(driver, payVia, 5);
 		selectClass.dropdown(payVia, excelReader.getExpenseDetails(1, 6));
 		selectClass.dropdown(paymentAccount,excelReader.getExpenseDetails(1, 7));
-//		click(chooseFile);
 		javscriptExecuters.clickJsElement(chooseFile, driver);
 		fileUpload.upload(readConfigProperty.paymentFile);
 		sendKeys(paymentNote, excelReader.getExpenseDetails(1, 8));

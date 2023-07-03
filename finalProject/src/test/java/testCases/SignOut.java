@@ -1,6 +1,8 @@
 package testCases;
 
 import org.testng.annotations.Test;
+
+import pageElements.HomePageElements;
 import pageElements.LoginPageElements;
 import utilities.ReadConfigProperty;
 import utilities.WebDriverManager;
@@ -11,27 +13,31 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class LoginPage extends WebDriverManager {
+public class SignOut extends WebDriverManager {
+	
 	public static WebDriver driver;
 	LoginPageElements loginPageElements;
+	HomePageElements homePageElements;
 	ReadConfigProperty readConfigProperty = new ReadConfigProperty();
 
-	@Test(priority = 0, enabled = true)
-	public void invalidLogin() {
-		loginPageElements.login_With_Invalid_Credentials("admin", "12345");
-		Assert.assertEquals(loginPageElements.get_Invalid_Credentials_Text(), "These credentials do not match our records.");
-	}
-
-	@Test(priority = 1, enabled = true, dataProvider = "logins")
+	@Test(priority = 0, enabled = true, dataProvider = "logins")
 	public void login(String id, String password) {
 		loginPageElements.login_With_Valid_Credentials(id, password);
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
+	}
+
+	@Test(priority = 1, enabled = true)
+	public void signOut() {
+		homePageElements.signOut();
+		Assert.assertEquals(homePageElements.get_LoginPage(), "Login");
+		
 	}
 
 	@BeforeTest(alwaysRun = true)
 	public void beforeTest() {
 		driver = launchBrowser(readConfigProperty.browser, readConfigProperty.url);
 		loginPageElements = new LoginPageElements(driver);
+		homePageElements = new HomePageElements(driver);
 	}
 
 	@AfterTest(alwaysRun = true)
