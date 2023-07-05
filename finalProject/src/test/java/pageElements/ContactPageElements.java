@@ -154,9 +154,11 @@ public class ContactPageElements extends CommonActions {
 		
 	}
 	
-	public void search(String key) throws InterruptedException {
-		Thread.sleep(3000);
+	public void search(String key) {
+//		Thread.sleep(3000);
 		waitConditions.explicitWait_elementvisibility(driver, search, 5);
+		clear(search);
+		click(search);
 		sendKeys(search, key);
 		
 	}

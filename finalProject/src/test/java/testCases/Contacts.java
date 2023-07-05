@@ -10,10 +10,13 @@ import utilities.WebDriverManager;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
+
+@Listeners(utilities.TestListener.class)
 public class Contacts extends WebDriverManager {
 	public static WebDriver driver;
 	LoginPageElements loginPageElements;
@@ -35,13 +38,13 @@ public class Contacts extends WebDriverManager {
 	}
 	
 	@Test(priority = 2, enabled = false)
-	public void doPayment() throws InterruptedException {
+	public void doPayment()  {
 		contactPageElements.search(excelReader.getContactDetails(1, 0));
 		contactPageElements.pay_dueAmount();
 	}
 	
 	@Test(priority = 3, enabled = false)
-	public void deleteSuppliers() throws InterruptedException {
+	public void deleteSuppliers()  {
 		contactPageElements.search(excelReader.getContactDetails(1, 0));
 		contactPageElements.delete_suppliers();
 		contactPageElements.search(excelReader.getContactDetails(1, 0));
