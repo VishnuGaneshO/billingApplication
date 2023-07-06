@@ -125,24 +125,24 @@ public class ExpensesPageElements extends CommonActions {
 	public WebElement chooseFile;
 	
 	
-	public void add_Expenses()  {
+	public void add_Expenses(String businessLocation, String expenseCategory2, String referenceNo2, String totalAmount2, String expenseFor2, String expenseNote2)  {
 		click(expenses);
 		click(listExpenses);
 		click(add);
 		click(bussinessLocation);
-		sendKeys(bussinessLocationInput, excelReader.getExpenseDetails(1, 0));
-		selectClass.behavioralDropDown(bussinessLocationList, excelReader.getExpenseDetails(2, 0));
+		sendKeys(bussinessLocationInput, businessLocation);
+		selectClass.behavioralDropDown(bussinessLocationList, businessLocation);
 		click(expenseCategory);
-		sendKeys(expenseCategoryInput, excelReader.getExpenseDetails(1, 1));
-		selectClass.behavioralDropDown(expenseCategoryList, excelReader.getExpenseDetails(2, 1));
-		sendKeys(referenceNo,excelReader.getExpenseDetails(1, 2));
-		sendKeys(totalAmount, excelReader.getExpenseDetails(1, 3));
+		sendKeys(expenseCategoryInput, expenseCategory2);
+		selectClass.behavioralDropDown(expenseCategoryList, expenseCategory2);
+		sendKeys(referenceNo,referenceNo2);
+		sendKeys(totalAmount, totalAmount2);
 		click(expenseFor);
-		sendKeys(expenseForInput, excelReader.getExpenseDetails(1, 4));
-		selectClass.behavioralDropDown(expenseForList, excelReader.getExpenseDetails(2, 4));
+		sendKeys(expenseForInput, expenseFor2);
+		selectClass.behavioralDropDown(expenseForList, expenseFor2);
 		javscriptExecuters.clickJsElement(browse, driver);
 		fileUpload.upload(readConfigProperty.fileLocation);
-		sendKeys(expenseNote, excelReader.getExpenseDetails(1, 5));
+		sendKeys(expenseNote, expenseNote2);
 		click(save);
 		
 	}
@@ -169,16 +169,16 @@ public class ExpensesPageElements extends CommonActions {
 		click(ok);
 	}
 	
-	public void add_Payment() throws InterruptedException {
+	public void add_Payment(String payment, String paymentAccount2, String paymentnote2) throws InterruptedException {
 		waitConditions.explicitWait_elementvisibility(driver, actions, 5);
 		click(actions);
 		click(addPayment);
 		waitConditions.explicitWait_elementvisibility(driver, payVia, 5);
-		selectClass.dropdown(payVia, excelReader.getExpenseDetails(1, 6));
-		selectClass.dropdown(paymentAccount,excelReader.getExpenseDetails(1, 7));
+		selectClass.dropdown(payVia, payment);
+		selectClass.dropdown(paymentAccount,paymentAccount2);
 		javscriptExecuters.clickJsElement(chooseFile, driver);
 		fileUpload.upload(readConfigProperty.paymentFile);
-		sendKeys(paymentNote, excelReader.getExpenseDetails(1, 8));
+		sendKeys(paymentNote, paymentnote2);
 		click(savePayment);
 		
 	}

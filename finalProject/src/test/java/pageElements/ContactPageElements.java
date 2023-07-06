@@ -58,7 +58,7 @@ public class ContactPageElements extends CommonActions {
 	@FindBy(id="pay_term_number")
 	public WebElement payTerm;
 	
-	@FindBy(xpath="//select[@class='form-control width-60 pull-left']")
+	@FindBy(xpath="//label[text()='Pay term:']/following-sibling::select")
 	public WebElement payTermSelect;
 	
 	@FindBy(id="email")
@@ -127,29 +127,19 @@ public class ContactPageElements extends CommonActions {
 	@FindBy(xpath="(//button[@class='btn btn-primary'])[2]")
 	public WebElement savePayment;
 	
-	public void add_suppliers() {
+	public void add_suppliers(String contactName, String businessName, String payTermNumber, String mobileNumber, String payTermMonth) {
+		waitConditions.explicitWait_elementclickable(driver, contacts, 5);
 		click(contacts);
+		waitConditions.explicitWait_elementclickable(driver, suppliers, 5);
 		click(suppliers);
 		waitConditions.explicitWait_elementvisibility(driver, add, 5);
 		click(add);
-//		waitConditions.explicitWait_elementvisibility(driver, contactType, 5);
-//		selectClass.dropdown(contactType, excelReader.getContactDetails(4, 0));
-		sendKeys(name, excelReader.getContactDetails(1, 0));
-		sendKeys(businessType, excelReader.getContactDetails(1, 1));
-		sendKeys(contactID, excelReader.getContactDetails(1, 2));
-		sendKeys(taxNumber, excelReader.getContactDetails(1, 3));
-		sendKeys(openingBalance, excelReader.getContactDetails(1, 4));
-		sendKeys(payTerm, excelReader.getContactDetails(1, 5));
-		selectClass.dropdown(payTermSelect, excelReader.getContactDetails(4, 1));
-		sendKeys(email, excelReader.getContactDetails(1, 6));
-		sendKeys(mobile, excelReader.getContactDetails(1, 7));
-		sendKeys(alternateNumber, excelReader.getContactDetails(1, 8));
-		sendKeys(landline, excelReader.getContactDetails(1, 9));
-		sendKeys(city, excelReader.getContactDetails(1, 10));
-		sendKeys(state, excelReader.getContactDetails(1, 11));
-		sendKeys(country, excelReader.getContactDetails(1, 12));
-		sendKeys(landmark, excelReader.getContactDetails(1, 13));
-		sendKeys(customField1, excelReader.getContactDetails(1, 14));
+		waitConditions.explicitWait_elementvisibility(driver, name, 5);
+		sendKeys(name, contactName);
+		sendKeys(businessType, businessName);
+		sendKeys(payTerm,payTermNumber);
+		selectClass.dropdown(payTermSelect, payTermMonth);
+		sendKeys(mobile, mobileNumber);
 		click(save);
 		
 	}
@@ -158,7 +148,6 @@ public class ContactPageElements extends CommonActions {
 //		Thread.sleep(3000);
 		waitConditions.explicitWait_elementvisibility(driver, search, 5);
 		clear(search);
-		click(search);
 		sendKeys(search, key);
 		
 	}

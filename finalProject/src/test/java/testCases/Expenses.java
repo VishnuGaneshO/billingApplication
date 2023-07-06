@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import pageElements.ExpensesPageElements;
 import pageElements.LoginPageElements;
+import utilities.ExcelDataProvider;
 import utilities.ExcelReader;
 import utilities.ReadConfigProperty;
 import utilities.WebDriverManager;
@@ -29,32 +30,35 @@ public class Expenses extends WebDriverManager {
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
 	}
 
-	@Test(priority = 1, enabled = true)
-	public void addExpense()  {
-		expensesPageElements.add_Expenses();
-		Assert.assertEquals(expensesPageElements.get_firstRowReferenceNo(), excelReader.getExpenseDetails(1, 2));
+	@Test(priority = 1, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "expenseData")
+	public void addExpense(String businessLocation, String expenseCategory, String referenceNo, String totalAmount,
+			String expenseFor, String expenseNote, String payment, String paymentAccount, String paymentnote,
+			String paymentStatus) 
+	{
+		expensesPageElements.add_Expenses(businessLocation, expenseCategory, referenceNo, totalAmount, expenseFor, expenseNote );
+		Assert.assertEquals(expensesPageElements.get_firstRowReferenceNo(), referenceNo);
 	}
-	
 
-	@Test(priority = 2, enabled = true)
-	public void doPayment() throws InterruptedException  {
-		expensesPageElements.add_Payment();
-		Assert.assertEquals(expensesPageElements.get_Payment_Status(), excelReader.getExpenseDetails(1, 9));
+	@Test(priority = 2, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "expenseData")
+	public void doPayment(String businessLocation, String expenseCategory, String referenceNo, String totalAmount,
+			String expenseFor, String expenseNote, String payment, String paymentAccount, String paymentnote,
+			String paymentStatus) throws InterruptedException 
+	{
+		expensesPageElements.add_Payment(payment, paymentAccount, paymentnote );
+		Assert.assertEquals(expensesPageElements.get_Payment_Status(), paymentStatus);
 	}
-	
+
 	@Test(priority = 3, enabled = true)
 	public void downloadExpenses() throws InterruptedException {
 		expensesPageElements.download();
 	}
-	
-	
+
 	@Test(priority = 4, enabled = true)
 	public void deleteExpenses() {
 		expensesPageElements.expense_Delete();
-		Assert.assertEquals(expensesPageElements.get_noData_Found(), excelReader.getExpenseDetails(1, 10));
+		Assert.assertEquals(expensesPageElements.get_noData_Found(), "No data available in table");
 	}
-	
-	
+
 	@BeforeTest(alwaysRun = true)
 	public void beforeTest() {
 		driver = launchBrowser(readConfigProperty.browser, readConfigProperty.url);

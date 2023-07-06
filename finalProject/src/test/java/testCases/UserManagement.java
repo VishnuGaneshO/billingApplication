@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import pageElements.LoginPageElements;
 import pageElements.UserPageElements;
+import utilities.ExcelDataProvider;
 import utilities.ExcelReader;
 import utilities.ReadConfigProperty;
 import utilities.WebDriverManager;
@@ -29,28 +30,33 @@ public class UserManagement extends WebDriverManager {
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
 	}
 
-	@Test(priority = 1, enabled = true)
-	public void user()  {
-		userPageElements.add_User();
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
-		Assert.assertEquals(userPageElements.get_Search_Result(), excelReader.getUserDetails(1, 10));
+	@Test(priority = 1, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "userData")
+	public void user(String prefix, String firstName, String lastname, String email, String roleInput, String username,
+			String password, String newName, String newLastName, String role) 
+	{
+		userPageElements.add_User(prefix, firstName, lastname, email, roleInput, username,password, newName, newLastName, role );
+		userPageElements.user_Search(username);
+		Assert.assertEquals(userPageElements.get_firstRowUsername(), username);
 	}
-	
-	@Test(priority = 2, enabled = true)
-	public void edit() {
-		userPageElements.edit_User(excelReader.getUserDetails(1, 9));
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
-		Assert.assertEquals(userPageElements.get_Search_Result(), excelReader.getUserDetails(1, 8));
+
+	@Test(priority = 2, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "userData")
+	public void edit(String prefix, String firstName, String lastname, String email, String roleInput, String username,
+			String password, String newName, String newLastName, String role ) 
+	{
+		userPageElements.edit_User(newLastName);
+		userPageElements.user_Search(username);
+		Assert.assertEquals(userPageElements.get_firstRowName(), newName);
 	}
-	
-	@Test(priority = 3, enabled = true)
-	public void delete() {
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
+
+	@Test(priority = 3, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "userData")
+	public void delete(String prefix, String firstName, String lastname, String email, String roleInput, String username,
+			String password, String newName, String newLastName, String role ) throws InterruptedException
+	{
+		userPageElements.user_Search(username);
 		userPageElements.delete_User();
-		userPageElements.user_Search(excelReader.getUserDetails(1, 5));
+		userPageElements.user_Search(username);
 		Assert.assertEquals(userPageElements.get_No_Records_Found(), "No matching records found");
 	}
-	
 
 	@BeforeTest(alwaysRun = true)
 	public void beforeTest() {

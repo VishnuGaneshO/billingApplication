@@ -37,6 +37,7 @@ public class LoginPageElements extends CommonActions {
 	public WebElement invalidCredentials;
 	
 	public void login_With_Valid_Credentials(String id,String key) {
+		clear(username);
 		sendKeys(username, id);
 		sendKeys(password, key);
 		click(login);
@@ -45,11 +46,11 @@ public class LoginPageElements extends CommonActions {
 	}
 	
 	public void login_With_Invalid_Credentials(String id,String key) {
-		
+		clear(username);
 		sendKeys(username, id);
 		sendKeys(password, key);
 		click(login);
-		clear(username);
+		
 	}
 	
 	public String get_Welcome_Text() {

@@ -8,6 +8,8 @@ public class JavscriptExecuters {
 	
 	public void clickJsElement(WebElement element, WebDriver driver) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		
 	}
+	
 
 }

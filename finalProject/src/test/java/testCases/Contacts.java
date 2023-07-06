@@ -2,6 +2,7 @@ package testCases;
 
 import org.testng.annotations.Test;
 
+import utilities.ExcelDataProvider;
 import pageElements.ContactPageElements;
 import pageElements.LoginPageElements;
 import utilities.ExcelReader;
@@ -30,11 +31,11 @@ public class Contacts extends WebDriverManager {
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
 	}
 
-	@Test(priority = 1, enabled = true)
-	public void suppliers() throws InterruptedException {
-		contactPageElements.add_suppliers();
-		contactPageElements.search(excelReader.getContactDetails(1, 0));
-		Assert.assertEquals(contactPageElements.get_firstRowName(), excelReader.getContactDetails(1, 0));
+	@Test(priority = 1, enabled = true, dataProviderClass=ExcelDataProvider.class, dataProvider = "contactsData")
+	public void suppliers(String name, String bussinessName, String payTrem, String mobile, String payTermMonth) throws InterruptedException {
+		contactPageElements.add_suppliers(name, bussinessName, payTrem, mobile, payTermMonth);
+		contactPageElements.search(name);
+		Assert.assertEquals(contactPageElements.get_firstRowName(),name);
 	}
 	
 	@Test(priority = 2, enabled = false)
