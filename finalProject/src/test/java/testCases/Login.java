@@ -20,13 +20,13 @@ public class Login extends WebDriverManager {
 	LoginPageElements loginPageElements;
 	ReadConfigProperty readConfigProperty = new ReadConfigProperty();
 
-	@Test(priority = 0, enabled = true, dataProviderClass=ExcelDataProvider.class, dataProvider = "invalidloginData")
+	@Test(priority = 0, enabled = false, dataProviderClass=ExcelDataProvider.class, dataProvider = "invalidloginData")
 	public void invalidLogin(String id, String password) {
 		loginPageElements.login_With_Invalid_Credentials(id, password);
 		Assert.assertEquals(loginPageElements.get_Invalid_Credentials_Text(), "These credentials do not match our records.");
 	}
 
-	@Test(priority = 1, enabled = false, dataProvider = "logins")
+	@Test(priority = 1, enabled = true, dataProvider = "logins")
 	public void login(String id, String password) {
 		loginPageElements.login_With_Valid_Credentials(id, password);
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");

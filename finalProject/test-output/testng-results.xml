@@ -1,165 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-07-06T13:03:03 IST" name="Default suite" finished-at="2023-07-06T13:03:34 IST" duration-ms="30697">
+  <suite started-at="2023-07-06T15:47:50 IST" name="Default suite" finished-at="2023-07-06T15:48:10 IST" duration-ms="19606">
     <groups>
     </groups>
-    <test started-at="2023-07-06T13:03:03 IST" name="Default test" finished-at="2023-07-06T13:03:34 IST" duration-ms="30697">
-      <class name="testCases.Expenses">
-        <test-method is-config="true" signature="startTest()[pri:0, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:03 IST" name="startTest" finished-at="2023-07-06T13:03:03 IST" duration-ms="345" status="PASS">
+    <test started-at="2023-07-06T15:47:50 IST" name="Default test" finished-at="2023-07-06T15:48:10 IST" duration-ms="19606">
+      <class name="testCases.SignOut">
+        <test-method is-config="true" signature="setupSuite(org.testng.ITestContext)[pri:0, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:47:50 IST" name="setupSuite" finished-at="2023-07-06T15:47:50 IST" duration-ms="25" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@18539cb1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+        <test-method is-config="true" signature="startTest()[pri:0, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:47:50 IST" name="startTest" finished-at="2023-07-06T15:47:50 IST" duration-ms="335" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:03 IST" name="beforeTest" finished-at="2023-07-06T13:03:15 IST" duration-ms="11794" status="PASS">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:47:50 IST" name="beforeTest" finished-at="2023-07-06T15:48:05 IST" duration-ms="14422" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="login(java.lang.String, java.lang.String)[pri:0, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:15 IST" name="login" data-provider="logins" finished-at="2023-07-06T13:03:18 IST" duration-ms="3087" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[admin]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[123123]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="login(java.lang.String, java.lang.String)[pri:0, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:48:05 IST" name="login" data-provider="logins" finished-at="2023-07-06T15:48:08 IST" duration-ms="3185" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+at utilities.WebDriverManager.Screenshot(WebDriverManager.java:72)
+at utilities.Retry.retry(Retry.java:45)
+at org.testng.internal.TestInvoker.handleInvocationResults(TestInvoker.java:485)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:633)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:816)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+at org.testng.TestRunner.privateRun(TestRunner.java:766)
+at org.testng.TestRunner.run(TestRunner.java:587)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1187)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1109)
+at org.testng.TestNG.runSuites(TestNG.java:1039)
+at org.testng.TestNG.run(TestNG.java:1007)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="addExpense(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:19 IST" name="addExpense" data-provider="expenseData" finished-at="2023-07-06T13:03:28 IST" duration-ms="8807" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[DELHI (DLH)]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Travel]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[190012]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[1000000]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Mr admin KL]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[Have a good day!]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[Other]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[Education]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[Payment completed]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[Paid]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="signOut()[pri:1, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:48:08 IST" name="signOut" finished-at="2023-07-06T15:48:10 IST" duration-ms="1432" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- addExpense -->
-        <test-method signature="doPayment(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:2, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:28 IST" name="doPayment" data-provider="expenseData" finished-at="2023-07-06T13:03:32 IST" duration-ms="4463" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[DELHI (DLH)]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Travel]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[190012]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[1000000]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Mr admin KL]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[Have a good day!]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[Other]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[Education]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[Payment completed]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[Paid]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- doPayment -->
-        <test-method signature="downloadExpenses()[pri:3, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:32 IST" name="downloadExpenses" finished-at="2023-07-06T13:03:33 IST" duration-ms="406" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- downloadExpenses -->
-        <test-method signature="deleteExpenses()[pri:4, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:33 IST" name="deleteExpenses" finished-at="2023-07-06T13:03:34 IST" duration-ms="1063" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deleteExpenses -->
-        <test-method is-config="true" signature="afterTest()[pri:0, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:34 IST" name="afterTest" finished-at="2023-07-06T13:03:34 IST" duration-ms="125" status="PASS">
+        </test-method> <!-- signOut -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:48:10 IST" name="afterTest" finished-at="2023-07-06T15:48:10 IST" duration-ms="174" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
-        <test-method is-config="true" signature="endTest()[pri:0, instance:testCases.Expenses@31e5415e]" started-at="2023-07-06T13:03:34 IST" name="endTest" finished-at="2023-07-06T13:03:34 IST" duration-ms="403" status="PASS">
+        <test-method is-config="true" signature="endTest()[pri:0, instance:testCases.SignOut@4e096385]" started-at="2023-07-06T15:48:10 IST" name="endTest" finished-at="2023-07-06T15:48:10 IST" duration-ms="449" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- testCases.Expenses -->
+      </class> <!-- testCases.SignOut -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

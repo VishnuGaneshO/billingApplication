@@ -24,13 +24,13 @@ public class Expenses extends WebDriverManager {
 	ReadConfigProperty readConfigProperty = new ReadConfigProperty();
 	ExcelReader excelReader = new ExcelReader();
 
-	@Test(priority = 0, enabled = true, dataProvider = "logins")
+	@Test(priority = 0, enabled = true, dataProvider = "logins", groups = "functional")
 	public void login(String id, String password) {
 		loginPageElements.login_With_Valid_Credentials(id, password);
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
 	}
 
-	@Test(priority = 1, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "expenseData")
+	@Test(priority = 1, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "expenseData", groups="functional")
 	public void addExpense(String businessLocation, String expenseCategory, String referenceNo, String totalAmount,
 			String expenseFor, String expenseNote, String payment, String paymentAccount, String paymentnote,
 			String paymentStatus) 
@@ -39,7 +39,7 @@ public class Expenses extends WebDriverManager {
 		Assert.assertEquals(expensesPageElements.get_firstRowReferenceNo(), referenceNo);
 	}
 
-	@Test(priority = 2, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "expenseData")
+	@Test(priority = 2, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "expenseData", groups="regression")
 	public void doPayment(String businessLocation, String expenseCategory, String referenceNo, String totalAmount,
 			String expenseFor, String expenseNote, String payment, String paymentAccount, String paymentnote,
 			String paymentStatus) throws InterruptedException 
@@ -48,12 +48,12 @@ public class Expenses extends WebDriverManager {
 		Assert.assertEquals(expensesPageElements.get_Payment_Status(), paymentStatus);
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = true, groups="regression")
 	public void downloadExpenses() throws InterruptedException {
 		expensesPageElements.download();
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = true, groups="functional")
 	public void deleteExpenses() {
 		expensesPageElements.expense_Delete();
 		Assert.assertEquals(expensesPageElements.get_noData_Found(), "No data available in table");

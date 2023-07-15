@@ -12,6 +12,7 @@ import utilities.WebDriverManager;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -38,24 +39,12 @@ public class Contacts extends WebDriverManager {
 		Assert.assertEquals(contactPageElements.get_firstRowName(),name);
 	}
 	
-	@Test(priority = 2, enabled = false)
-	public void doPayment()  {
-		contactPageElements.search(excelReader.getContactDetails(1, 0));
-		contactPageElements.pay_dueAmount();
-	}
 	
-	@Test(priority = 3, enabled = false)
-	public void deleteSuppliers()  {
-		contactPageElements.search(excelReader.getContactDetails(1, 0));
-		contactPageElements.delete_suppliers();
-		contactPageElements.search(excelReader.getContactDetails(1, 0));
-		Assert.assertEquals(contactPageElements.get_noDataFound(), "No matching records found");
-	}
 	
-
+	@Parameters("browser")
 	@BeforeTest(alwaysRun = true)
-	public void beforeTest() {
-		driver = launchBrowser(readConfigProperty.browser, readConfigProperty.url);
+	public void beforeTest(String browser) {
+		driver = launchBrowser(browser, readConfigProperty.url);
 		loginPageElements = new LoginPageElements(driver);
 		contactPageElements = new ContactPageElements(driver);
 	}

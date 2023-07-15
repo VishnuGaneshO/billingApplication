@@ -10,6 +10,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;
 
 public class ExcelDataProvider {
+	
+	public static void main(String[] args) throws IOException {
+		ExcelDataProvider obj = new ExcelDataProvider();
+		System.out.println(obj.invalidLoginDataProvider());
+	}
 
 	@DataProvider(name = "invalidloginData")
 	public Object[][] invalidLoginDataProvider() throws IOException {
@@ -60,8 +65,8 @@ public class ExcelDataProvider {
 		String value = null;
 		int num;
 		try {
-			FileInputStream fis = new FileInputStream(fileName);
-			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			FileInputStream fileInputStream = new FileInputStream(fileName);
+			XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			XSSFRow row;
 			int noOfRows = sheet.getPhysicalNumberOfRows();

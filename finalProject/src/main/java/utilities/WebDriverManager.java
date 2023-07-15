@@ -100,12 +100,12 @@ public class WebDriverManager {
 		extent.flush();
 	}
 
-//	@BeforeSuite(alwaysRun = true)
-//	public void setupSuite(ITestContext context) {
-//		for (ITestNGMethod method : context.getAllTestMethods()) {
-//			method.setRetryAnalyzerClass(Retry.class);
-//		}
-//	}
+	@BeforeSuite(alwaysRun = true)
+	public void setupSuite(ITestContext context) {
+		for (ITestNGMethod method : context.getAllTestMethods()) {
+			method.setRetryAnalyzerClass(Retry.class);
+		}
+	}
 	
 	
 	

@@ -24,13 +24,13 @@ public class UserManagement extends WebDriverManager {
 	ReadConfigProperty readConfigProperty = new ReadConfigProperty();
 	ExcelReader excelReader = new ExcelReader();
 
-	@Test(priority = 0, enabled = true, dataProvider = "logins")
+	@Test(priority = 0, enabled = true, dataProvider = "logins" ,groups="functional")
 	public void login(String id, String password) {
 		loginPageElements.login_With_Valid_Credentials(id, password);
 		Assert.assertEquals(loginPageElements.get_Welcome_Text(), "Welcome admin,");
 	}
 
-	@Test(priority = 1, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "userData")
+	@Test(priority = 1, enabled = true, dataProviderClass = ExcelDataProvider.class, dataProvider = "userData", groups="functional")
 	public void user(String prefix, String firstName, String lastname, String email, String roleInput, String username,
 			String password, String newName, String newLastName, String role) 
 	{

@@ -145,7 +145,6 @@ public class ContactPageElements extends CommonActions {
 	}
 	
 	public void search(String key) {
-//		Thread.sleep(3000);
 		waitConditions.explicitWait_elementvisibility(driver, search, 5);
 		clear(search);
 		sendKeys(search, key);
@@ -166,18 +165,7 @@ public class ContactPageElements extends CommonActions {
 		
 	}
 	
-	public void pay_dueAmount() {
-		waitConditions.explicitWait_elementclickable(driver, actions, 5);
-		click(actions);
-		click(payDueAmount);
-		waitConditions.explicitWait_elementvisibility(driver, payVia, 5);
-		selectClass.dropdown(payVia, excelReader.getContactDetails(4, 2));
-		javscriptExecuters.clickJsElement(chooseFile, driver);
-		fileUpload.upload(readConfigProperty.paymentFile);
-		selectClass.dropdown(paymentAccount, excelReader.getContactDetails(4, 3));
-		sendKeys(paymentNote, excelReader.getContactDetails(4, 4));
-		click(savePayment);
-	}
+	
 			
 	public String get_firstRowName() throws InterruptedException {
 		Thread.sleep(3000);
